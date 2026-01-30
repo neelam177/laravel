@@ -30,9 +30,10 @@
         @endif
 
     </div>
-    <form action="{{ route('employees.edit',$employee->id) }}" class="container" method="post" enctype="multipart/form-data">
+    <form action="{{ route('employees.update', $employee->id) }}" class="container" method="post" enctype="multipart/form-data">
         {{-- Cross Site Request Forgery(it is a form token security add) --}}
         @csrf
+        @method('PUT')
         
         <div class="card border-0 shadow-lg">
             <div class="card-body">

@@ -18,7 +18,7 @@
 
     <div class="container">
         @if(session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mt-3">
             {{ session('success') }}
         </div>
         @endif
@@ -58,7 +58,11 @@
                     <td>{{ $emp->address }}</td>
                     <td>
                         <a href="{{ route('employees.edit',$emp->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                        <form action="{{ route('employees.destroy', $emp->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this employee?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

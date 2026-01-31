@@ -6,17 +6,18 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/home', function () {
-//     return view('home');
-// });
-// Route::view('/home', 'home');
-Route::redirect('/home', '/');
 
-Route::get('/about/{name}', function ($name) {
-    // echo $name;
-    // return view('about');
-    return view('about', ['name' => $name]);
+Route::get('/home', function () {
+    return view('home');
 });
+
+// Route::redirect('/home', '/');
+
+// Route::get('/about/{name}', function ($name) {
+//     // echo $name;
+//     // return view('about');
+//     return view('about', ['name' => $name]);
+// });
 
 Route::get('user',[UserController::class, 'getuser']);
 Route::get('demo/{name}',[UserController::class, 'aboutUser']);

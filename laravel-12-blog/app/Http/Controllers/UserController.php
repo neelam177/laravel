@@ -15,7 +15,7 @@ class UserController extends Controller
     function aboutUser($name)
     {
         // return "Hello" . $name;
-        return view('demo', ['name' => $name]);  //  Passing $name to view
+        return view('demo', ['name' => $name], ['page' => "this is home page"]);  //  Passing $name to view
     }
 
     function adminLogin()

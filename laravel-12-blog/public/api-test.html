@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Testing</h1>
+    
+    <h3>GET Employee List</h3>
+    <button onclick="getEmployees()">Get Employees</button>
+    
+    <h3>POST Add Employee</h3>
+    <input type="text" id="name" placeholder="Name" value="Test User">
+    <input type="email" id="email" placeholder="Email" value="test@example.com">
+    <button onclick="addEmployee()">Add Employee</button>
+    
+    <div id="result"></div>
+
+    <script>
+        function getEmployees() {
+            fetch('/api/employee')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerHTML = 
+                        '<h4>GET Result:</h4><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                })
+                .catch(error => {
+                    document.getElementById('result').innerHTML = 
+                        '<p style="color: red;">Error: ' + error + '</p>';
+                });
+        }
+
+        function addEmployee() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            fetch('/api/add-employee', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerHTML = 
+                    '<h4>POST Result:</h4><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            })
+            .catch(error => {
+                document.getElementById('result').innerHTML = 
+                    '<p style="color: red;">Error: ' + error + '</p>';
+            });
+        }
+    </script>
+</body>
+</html>

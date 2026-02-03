@@ -126,4 +126,26 @@ class EmployeeController extends Controller
         // $request->session()->flash('success', '');
         return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
     }
+
+
+    // API method to return employees as JSON
+    function list(){
+        return Employee::all();
+    }
+    function addEmployee(Request $request){
+        // return "hello here";
+        // return $request->input();
+        $employee = new Employee();
+        $employee->name=$request->name;
+        $employee->email=$request->email;
+        $employee->address=$request->address;
+        if($employee->save()){
+            return "Employee Added";
+        }else{
+            return "operation failed";
+        }
+    }
 }
+
+
+

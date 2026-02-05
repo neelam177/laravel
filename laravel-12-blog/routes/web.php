@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -36,3 +37,4 @@ Route::get('admin-login',[UserController::class,'adminLogin']);
 
 //option2
 Route::resource('employees', EmployeeController::class);
+

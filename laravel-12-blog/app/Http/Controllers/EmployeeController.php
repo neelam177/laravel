@@ -129,23 +129,59 @@ class EmployeeController extends Controller
 
 
     // API method to return employees as JSON
-    function list(){
+    function list()
+    {
         return Employee::all();
     }
-    function addEmployee(Request $request){
+    function addEmployee(Request $request)
+    {
         // return "hello here";
         // return $request->input();
-        $employee = new Employee();
-        $employee->name=$request->name;
-        $employee->email=$request->email;
-        $employee->address=$request->address;
-        if($employee->save()){
-            return "Employee Added";
-        }else{
-            return "operation failed";
+        $rules = array(
+            'name' => 'required | min:3 |max:10',
+            'email'=>'email | required',
+            'address'=> 'required'
+        );
+        $validatoin = validator::make($request->all(), $rules);
+        if ($validatoin->fails()) {
+            return $validatoin->errors();
+        } else {
+            $employee = new Employee();
+            $employee->name = $request->name;
+            $employee->email = $request->email;
+            $employee->address = $request->address;
+            if ($employee->save()) {
+                // return "Employee Added";
+                return ["result" => "Employee Added"];
+            } else {
+                // return "operation failed";
+                return ["result" => "Employee failed"];
+            }
+        }
+    }
+    function updateEmpoyee(Request $request)
+    {
+        // return "updated Employee";
+        $employee = Employee::find($request->id);
+        $employee->name = $request->name;
+        $employee->email = $request->email;
+        $employee->address = $request->address;
+        if ($employee->save()) {
+            // return "Employee Added";
+            return ["result" => "Employee Updeted"];
+        } else {
+            // return "operation failed";
+            return ["result" => "Employee not Updeted"];
+        }
+    }
+    function deleteEmployee($id)
+    {
+        // return $id ;
+        $employee = Employee::destroy($id);
+        if ($employee) {
+            return ['result' => "Employee deleted record"];
+        } else {
+            return ['result' => "Employee record not deleted"];
         }
     }
 }
-
-
-

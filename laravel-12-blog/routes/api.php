@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\UserAuthController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -21,6 +23,17 @@ Route::get("test", function () {
 //     Route::delete('/{id}', [EmployeeController::class, 'destroy']);
 // });
 
-// Single route (current)
-Route::get('employee',[EmployeeController::class,'list']);
-Route::post('add-employee',[EmployeeController::class,'addEmployee']);
+Route::post('signup', [UserAuthController::class, 'signup']);
+Route::post('login', [UserAuthController::class, 'login']);
+
+Route::group(['middleware' => "auth:sanctum"], function () {
+    // Single route (current)
+    Route::get('employee', [EmployeeController::class, 'list']);
+    Route::post('add-employee', [EmployeeController::class, 'addEmployee']);
+    Route::put('update-employee', [EmployeeController::class, 'updateEmpoyee']);
+    Route::delete('delete-employee/{id}', [EmployeeController::class, 'deleteEmployee']);
+});
+
+Route::resource('member', MemberController::class);
+
+Route::get('login', [UserAuthController::class, 'login'])->name('login');

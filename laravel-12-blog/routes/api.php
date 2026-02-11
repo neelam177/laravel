@@ -37,3 +37,7 @@ Route::group(['middleware' => "auth:sanctum"], function () {
 Route::resource('member', MemberController::class);
 
 Route::get('login', [UserAuthController::class, 'login'])->name('login');
+
+
+
+// C3Lxk56y3urOBskVL9Aq5Uh3urco9HQBGim8GH6L25e524e7   darshu

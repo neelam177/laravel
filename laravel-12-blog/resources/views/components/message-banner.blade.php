@@ -1,4 +1,4 @@
 <div>
-    <span class="success">{{ $msg }}pan>
+    <span class="success">{{ $msg }}</span>
     <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
 </div>

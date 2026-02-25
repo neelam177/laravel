@@ -18,9 +18,13 @@ class UserAuthController extends Controller
             return ['result' => "User not found", "success" => false];
         }
         $success['token'] = $user->createToken('MyApp')->plainTextToken;
-        $user['name'] = $user->name;
+        $success['name'] = $user->name;
         // return $user;
-        return ['success' => true, "result" => $success, "msg" => "user successfully"];
+        return [
+            'success' => true,
+            'result' => $success,
+            'msg' => 'User successfully'
+        ];
     }
     function signup(Request $request)
     {

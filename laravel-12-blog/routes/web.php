@@ -20,10 +20,10 @@ Route::get('/home', function () {
 //     return view('about', ['name' => $name]);
 // });
 
-Route::get('user',[UserController::class, 'getuser']);
-Route::get('demo/{name}',[UserController::class, 'aboutUser']);
+Route::get('user', [UserController::class, 'getuser']);
+Route::get('demo/{name}', [UserController::class, 'aboutUser']);
 
-Route::get('admin-login',[UserController::class,'adminLogin']);
+Route::get('admin-login', [UserController::class, 'adminLogin']);
 
 
 
@@ -37,4 +37,3 @@ Route::get('admin-login',[UserController::class,'adminLogin']);
 
 //option2
 Route::resource('employees', EmployeeController::class);
-

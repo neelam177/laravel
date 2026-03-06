@@ -26,13 +26,24 @@ Route::get("test", function () {
 Route::post('signup', [UserAuthController::class, 'signup']);
 Route::post('login', [UserAuthController::class, 'login']);
 
-Route::group(['middleware' => "auth:sanctum"], function () {
-    // Single route (current)
-    Route::get('employee', [EmployeeController::class, 'list']);
-    Route::post('add-employee', [EmployeeController::class, 'addEmployee']);
-    Route::put('update-employee', [EmployeeController::class, 'updateEmpoyee']);
-    Route::delete('delete-employee/{id}', [EmployeeController::class, 'deleteEmployee']);
-});
+// Route::group(['middleware' => "auth:sanctum"], function () {
+//     // Single route (current)
+//     Route::get('employee', [EmployeeController::class, 'list']);
+//     Route::post('add-employee', [EmployeeController::class, 'addEmployee']);
+//     Route::put('update-employee', [EmployeeController::class, 'updateEmpoyee']);
+//     Route::delete('delete-employee/{id}', [EmployeeController::class, 'deleteEmployee']);
+// });
+
+
+Route::get('employee', [EmployeeController::class, 'list']);
+Route::post('add-employee', [EmployeeController::class, 'addEmployee']);
+
+
+
+
+Route::put('update-employee', [EmployeeController::class, 'updateEmpoyee']);
+Route::delete('delete-employee/{id}', [EmployeeController::class, 'deleteEmployee']);
+
 
 Route::resource('member', MemberController::class);
 
@@ -40,4 +51,4 @@ Route::get('login', [UserAuthController::class, 'login'])->name('login');
 
 
 
-// C3Lxk56y3urOBskVL9Aq5Uh3urco9HQBGim8GH6L25e524e7   darshu
+// 1|ksej83UsqsRx4lhm7oxXShuiTKded9WUeQqlSdGRaf7cee58   neelam
